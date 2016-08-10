@@ -17,7 +17,7 @@
           </div>
           <div class="control">
             <p class="control has-addons">
-              <input class="input" min="1" type="number" pattern="[0-9]*" inputmode="numeric" :value="sessionDuration">
+              <input class="input" min="1" type="number" pattern="[0-9]*" inputmode="numeric" v-model="sessionDuration">
               <a class="button is-info" @click.prevent="startNewSession()">Commencer</a>
             </p>
           </div>
@@ -52,7 +52,7 @@
           <div class="column is-3">
             <p class="title has-text-centered">Tics</p>
 
-            <ul>
+            <ul class="ticsBox">
               <li v-for="tic in sessionData.tics">
                 {{ ticTime(tic.tick) }} - {{ tic.tic }}
               </li>
@@ -95,8 +95,11 @@
           </a>
         </div>
       </div>
+
+      <p>&nbsp;</p>
+      <pre v-if="isSessionCompleted">{{ sessionData | json }}</pre>
     </div>
-    <pre>{{ sessionData | json }}</pre>
+
   </section>
 </template>
 
@@ -115,7 +118,7 @@
       return {
         modelName: 'erpsession',
         sessionDuration: 15,
-        tics: ['Cou', 'Epaules', 'Genoux', 'Vocal'],
+        tics: ['Bec', 'Cou', 'Epaules', 'Genoux', 'Penis', 'Poignet', 'Vocal'],
         now: 0,
         effortButtons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         sessionData: false,
@@ -308,3 +311,20 @@
     }
   }
 </script>
+
+<style scoped>
+  .effortButton {
+    width: 80px;
+  }
+
+  .section {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .ticsBox {
+    min-height: 215px;
+    max-height: 215px;
+    overflow-y: scroll;
+  }
+</style>
