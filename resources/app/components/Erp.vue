@@ -118,7 +118,7 @@
       return {
         modelName: 'erpsession',
         sessionDuration: 15,
-        tics: ['Bec', 'Cou', 'Epaules', 'Genoux', 'Penis', 'Poignet', 'Vocal'],
+        tics: ['Bec', 'Cheville', 'Cou', 'Coude', 'Doigt', 'Épaule', 'Genou', 'Raclement', 'Grenouille', 'Grimace', 'Culotte', 'Poignet', 'Reniflement', 'Sifflement', 'Vocal'],
         now: 0,
         effortButtons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         sessionData: false,
@@ -219,7 +219,7 @@
       },
 
       ticButtons: function () {
-        return _.sortBy(this.tics)
+        return _.sortBy(this.tics, function (i) { return i.latinise().toLowerCase() })
       },
 
       isSessionActive: function () {
